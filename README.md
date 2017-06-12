@@ -7,7 +7,7 @@ Gramatyki to instrukcje umożliwiające budowanie zdań za pomocą terminali wed
 
 S  ::= W ; Z
 
-S  ::= W ; Z | ε
+Z  ::= W ; Z | ε
 
 W ::= P | POW
 
