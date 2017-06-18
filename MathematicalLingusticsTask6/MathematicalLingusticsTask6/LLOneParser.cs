@@ -44,7 +44,9 @@ namespace MathematicalLingusticsTask6
                             }
 
                             if (production.IsPrime)
-                                stack.Pop();
+                            {
+                                stack.Pop();                      
+                            }
                             else
                                 ExpressionStacks.Remove(stack);
                         }
