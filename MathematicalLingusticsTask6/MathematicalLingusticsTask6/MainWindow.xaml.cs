@@ -39,13 +39,37 @@ namespace MathematicalLingusticsTask6
                     {
                         Symbols = new List<ISymbol>
                         {
-                            new RegularSymbol('*'),
-                            new RegularSymbol(':'),
-                            new RegularSymbol('+'),
-                            new RegularSymbol('-'),
+                            new RegularSymbol('*')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>
+                        {
+                            new RegularSymbol(':')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>
+                        {
+                            new RegularSymbol('+')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>
+                        {
+                            new RegularSymbol('-')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>
+                        {
                             new RegularSymbol('^')
                         }
-                    }
+                    },
                 }
             };
 
@@ -58,15 +82,68 @@ namespace MathematicalLingusticsTask6
                     {
                         Symbols = new List<ISymbol>()
                         {
-                            new RegularSymbol('0'),
-                            new RegularSymbol('1'),
-                            new RegularSymbol('2'),
-                            new RegularSymbol('3'),
-                            new RegularSymbol('4'),
-                            new RegularSymbol('5'),
-                            new RegularSymbol('6'),
-                            new RegularSymbol('7'),
-                            new RegularSymbol('8'),
+                            new RegularSymbol('0')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('1')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('2')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('3')
+                        }
+                    },new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('4')
+                        }
+                    }
+                    ,new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('5')
+                        }
+                    }
+                    ,new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('6')
+                        }
+                    }
+                    ,new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('7')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            new RegularSymbol('8')
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
                             new RegularSymbol('9')
                         }
                     }
@@ -198,6 +275,16 @@ namespace MathematicalLingusticsTask6
                     }
                 }
             };
+
+            p.Expressions.Add(new Expression()
+            {
+                Symbols = new List<ISymbol>()
+                {
+                    new RegularSymbol('('),
+                    w,
+                    new RegularSymbol(')')
+                }
+            });
 
             wPrime.Expressions.Add(
                 new Expression()
