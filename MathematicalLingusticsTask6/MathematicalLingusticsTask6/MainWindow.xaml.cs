@@ -154,6 +154,7 @@ namespace MathematicalLingusticsTask6
             var lPrime = new Production()
             {
                 Character = 'Ł', // L'
+                IsPrime = true,
                 Expressions = new List<Expression>()
                 {
                     new Expression()
@@ -161,6 +162,13 @@ namespace MathematicalLingusticsTask6
                         Symbols = new List<ISymbol>()
                         {
                             new EmptySign()
+                        }
+                    },
+                    new Expression()
+                    {
+                        Symbols = new List<ISymbol>()
+                        {
+                            c
                         }
                     }
                 }
@@ -182,18 +190,10 @@ namespace MathematicalLingusticsTask6
                 }
             };
 
-            lPrime.Expressions.Add(
-                new Expression()
-                {
-                    Symbols = new List<ISymbol>()
-                    {
-                        l
-                    }
-                });
-
             var rPrime = new Production()
             {
                 Character = 'X', // R'
+                IsPrime = true,
                 Expressions = new List<Expression>()
                 {
                     new Expression()
@@ -247,7 +247,8 @@ namespace MathematicalLingusticsTask6
 
             var wPrime = new Production()
             {
-                Character = 'V',
+                Character = 'V', //W'
+                IsPrime = true,
                 Expressions = new List<Expression>()
                 {
                     new Expression()

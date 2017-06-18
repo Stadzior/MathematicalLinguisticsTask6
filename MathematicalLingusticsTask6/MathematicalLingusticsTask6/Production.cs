@@ -8,7 +8,7 @@ namespace MathematicalLingusticsTask6
     {
         public List<Expression> Expressions { get; set; }
         public char Character { get; set; }
-
+        public bool IsPrime { get; set; }
         public HashSet<char> GetFirstSet()
         {
             var firstSet = new HashSet<char>();
