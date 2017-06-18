@@ -58,9 +58,9 @@ namespace MathematicalLingusticsTask6
                     }
                     else
                     {
-                        stack.Pop();  
+                        stack.Pop();
                         if (!stack.Any())
-                            j++;
+                            ExpressionStacks.Remove(stack);
                     }                
                 }
 
