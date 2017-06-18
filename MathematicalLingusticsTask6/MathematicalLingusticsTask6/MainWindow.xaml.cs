@@ -273,5 +273,19 @@ namespace MathematicalLingusticsTask6
                 }
             };
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Parser.Parse(txtInput.Text))
+            {
+                txtOutput.Text = "Valid";
+                txtOutput.Foreground = new SolidColorBrush(Color.FromRgb(50, 255, 50));
+            }
+            else
+            {
+                txtOutput.Text = "Invalid";
+                txtOutput.Foreground = new SolidColorBrush(Color.FromRgb(255, 50, 50));
+            }
+        }
     }
 }

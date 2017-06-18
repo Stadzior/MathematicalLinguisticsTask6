@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace MathematicalLingusticsTask6
 {
-    public class LLOneParser : ISyntaxParser
+    public interface ISyntaxParser
     {
-        public Grammar Grammar { get; set; }
-
-        public bool Parse(string input)
-        {
-            
-        }
+        bool Parse(string input);
     }
 }
