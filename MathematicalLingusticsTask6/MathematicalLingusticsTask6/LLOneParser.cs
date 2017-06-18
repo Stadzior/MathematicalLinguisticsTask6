@@ -25,7 +25,6 @@ namespace MathematicalLingusticsTask6
             for (int i = 0; i < input.Length; i++)
             { 
                 var symbolCharacter = input[i];
-                bool isPrime = false;
                 int j = 0;
                 while (j < ExpressionStacks.Count)
                 {
@@ -37,25 +36,24 @@ namespace MathematicalLingusticsTask6
                         if (expression.Symbols[correctedIndex] is Production)
                         {
                             var production = expression.Symbols[correctedIndex] as Production;
-                            isPrime = production.IsPrime;
                             foreach (var innerExpression in production.Expressions)
                             {
                                 var innerStack = new Stack<Tuple<int, Expression>>(stack.Reverse());
                                 innerStack.Push(new Tuple<int, Expression>(i, innerExpression));
                                 ExpressionStacks.Add(innerStack);
                             }
-                            ExpressionStacks.Remove(stack);
+
+                            if (production.IsPrime)
+                                stack.Pop();
+                            else
+                                ExpressionStacks.Remove(stack);
                         }
                         else
                         {
                             if (expression.Symbols[correctedIndex].Character.Equals(symbolCharacter))
                                 j++;
                             else
-                            {
-                                if(isPrime)
-                                    stack.Pop();
                                 ExpressionStacks.Remove(stack);
-                            }
                         }
                     }
                     else
