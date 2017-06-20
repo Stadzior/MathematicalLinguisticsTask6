@@ -28,7 +28,7 @@ namespace MathematicalLingusticsTask6
                 {
                     var stack = ExpressionStacks[j];
                     var expression = stack.Peek().Item2;
-                    var correctedIndex = stack.Peek().Item1;
+                    var correctedIndex = i - stack.Peek().Item1;
                     if (correctedIndex < expression.Symbols.Count)
                     {
                         if (expression.Symbols[correctedIndex] is Production)
@@ -37,16 +37,21 @@ namespace MathematicalLingusticsTask6
                             foreach (var innerExpression in production.Expressions)
                             {
                                 var innerStack = new Stack<Tuple<int, Expression>>(stack.Reverse());
-                                innerStack.Push(new Tuple<int, Expression>(0, innerExpression));
+                                innerStack.Push(new Tuple<int, Expression>(i, innerExpression));
                                 ExpressionStacks.Add(innerStack);
                             }
-
                             ExpressionStacks.Remove(stack);
                         }
                         else
                         {
                             if (expression.Symbols[correctedIndex].Character.Equals(symbolCharacter))
                                 j++;
+                            else if (expression.Symbols[correctedIndex].Character.Equals(new EmptySign().Character))
+                            {
+                                stack.Pop();
+                                var temp = stack.Pop();
+                                stack.Push(new Tuple<int,Expression>(temp.Item1-1, temp.Item2));
+                            }
                             else
                                 ExpressionStacks.Remove(stack);
                         }
@@ -58,7 +63,6 @@ namespace MathematicalLingusticsTask6
                             ExpressionStacks.Remove(stack);
                     }                
                 }
-
                 isValid = ExpressionStacks.Any();
                 if (!isValid)
                     break;
