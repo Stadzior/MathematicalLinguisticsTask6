@@ -27,47 +27,50 @@ namespace MathematicalLingusticsTask6
                 while (j < ExpressionStacks.Count)
                 {
                     var stack = ExpressionStacks[j];
-                    var expression = stack.Peek().Item2;
-                    var correctedIndex = i - stack.Peek().Item1;
-                    if (correctedIndex < expression.Symbols.Count)
+                    if (stack.Any())
                     {
-                        if (expression.Symbols[correctedIndex] is Production)
+                        var expression = stack.Peek().Item2;
+
+                        if (stack.Peek().Item1 < expression.Symbols.Count)
                         {
-                            var production = expression.Symbols[correctedIndex] as Production;
-                            foreach (var innerExpression in production.Expressions)
+                            var follow = expression.Symbols[stack.Peek().Item1];
+
+                            if (follow is Production)
+                                ExpressionStacks.SplitToDescendantStacks(stack);
+                            else
                             {
-                                var innerStack = new Stack<Tuple<int, Expression>>(stack.Reverse());
-                                innerStack.Push(new Tuple<int, Expression>(i, innerExpression));
-                                ExpressionStacks.Add(innerStack);
+                                if (follow.Character.Equals(symbolCharacter))
+                                {
+                                    j++;
+                                    stack.MoveToNextSymbol();
+                                }
+                                else if (follow.Character.Equals(new EmptySign().Character))
+                                {
+                                    stack.Pop();
+                                    stack.MoveToNextSymbol();
+                                }
+                                else
+                                    ExpressionStacks.Remove(stack);
                             }
-                            ExpressionStacks.Remove(stack);
                         }
                         else
                         {
-                            if (expression.Symbols[correctedIndex].Character.Equals(symbolCharacter))
+                            stack.Pop();
+                            if (!stack.Any())
                                 j++;
-                            else if (expression.Symbols[correctedIndex].Character.Equals(new EmptySign().Character))
-                            {
-                                stack.Pop();
-                                var temp = stack.Pop();
-                                stack.Push(new Tuple<int,Expression>(temp.Item1-1, temp.Item2));
-                            }
                             else
-                                ExpressionStacks.Remove(stack);
+                                stack.MoveToNextSymbol();
                         }
                     }
                     else
-                    {
-                        stack.Pop();
-                        if (!stack.Any())
-                            ExpressionStacks.Remove(stack);
-                    }                
+                        ExpressionStacks.Remove(stack);
                 }
+
                 isValid = ExpressionStacks.Any();
                 if (!isValid)
                     break;
             }
-            
+
             return isValid;
         }
     }

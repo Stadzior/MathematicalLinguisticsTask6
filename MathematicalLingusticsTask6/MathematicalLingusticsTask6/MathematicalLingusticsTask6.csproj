@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EmptySign.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Grammar.cs" />
     <Compile Include="ISyntaxParser.cs" />
     <Compile Include="RegularSymbol.cs" />
