@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathematicalLingusticsTask6
 {
@@ -30,7 +28,7 @@ namespace MathematicalLingusticsTask6
                 {
                     var stack = ExpressionStacks[j];
                     var expression = stack.Peek().Item2;
-                    var correctedIndex = i - stack.Peek().Item1;
+                    var correctedIndex = stack.Peek().Item1;
                     if (correctedIndex < expression.Symbols.Count)
                     {
                         if (expression.Symbols[correctedIndex] is Production)
@@ -39,16 +37,11 @@ namespace MathematicalLingusticsTask6
                             foreach (var innerExpression in production.Expressions)
                             {
                                 var innerStack = new Stack<Tuple<int, Expression>>(stack.Reverse());
-                                innerStack.Push(new Tuple<int, Expression>(i, innerExpression));
+                                innerStack.Push(new Tuple<int, Expression>(0, innerExpression));
                                 ExpressionStacks.Add(innerStack);
                             }
 
-                            if (production.IsPrime)
-                            {
-                                stack.Pop();                      
-                            }
-                            else
-                                ExpressionStacks.Remove(stack);
+                            ExpressionStacks.Remove(stack);
                         }
                         else
                         {
@@ -70,9 +63,8 @@ namespace MathematicalLingusticsTask6
                 if (!isValid)
                     break;
             }
+            
             return isValid;
         }
-
-
     }
 }
