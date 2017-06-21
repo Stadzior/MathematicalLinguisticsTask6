@@ -71,6 +71,41 @@ namespace MathematicalLingusticsTask6
                     break;
             }
 
+            if (isValid)
+            {
+                var nonEmptyStacks = ExpressionStacks.Where(s => s.Any()).ToList();
+                int j = 0;
+                while (j < nonEmptyStacks.Count)
+                {
+                    var stack = nonEmptyStacks[j];
+                    var expression = stack.Peek().Item2;
+
+                    if (stack.Peek().Item1 < expression.Symbols.Count)
+                    {
+                        var follow = expression.Symbols[stack.Peek().Item1];
+
+                        if (follow is Production)
+                            nonEmptyStacks.SplitToDescendantStacks(stack);
+                        else if(follow.Character.Equals(new EmptySign().Character))
+                        {
+                            stack.Pop();
+                            stack.MoveToNextSymbol();
+                        }
+                        else
+                            nonEmptyStacks.Remove(stack);
+                    }
+                    else
+                    {
+                        stack.Pop();
+                        if (!stack.Any())
+                            j++;
+                        else
+                            stack.MoveToNextSymbol();
+                    }
+                }
+                isValid = nonEmptyStacks.Any();
+            }
+
             return isValid;
         }
     }
